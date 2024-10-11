@@ -1,0 +1,22 @@
+#!/bin/bash
+# Clean up case directory
+
+echo "Cleaning case directory..."
+
+# Remove time directories
+rm -rf [1-9]*
+
+# Remove constant/polyMesh directory
+rm -rf constant/polyMesh
+
+# Remove processor directories for parallel runs
+rm -rf processor*
+
+# Remove log files
+rm -f log.*
+
+# Remove the dynamicCode directory if it exists
+rm -rf dynamicCode
+
+echo "Clean-up complete."
+
