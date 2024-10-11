@@ -1,0 +1,99 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+10
+(
+    inlet
+    {
+        type            patch;
+        nFaces          40;
+        startFace       21464;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          96;
+        startFace       21504;
+    }
+    walls
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          320;
+        startFace       21600;
+    }
+    nonCouple1
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          40;
+        startFace       21920;
+    }
+    nonCouple2
+    {
+        type            wall;
+        inGroups        List<word> 1(wall);
+        nFaces          96;
+        startFace       21960;
+    }
+    defaultFaces
+    {
+        type            empty;
+        inGroups        List<word> 1(empty);
+        nFaces          21760;
+        startFace       22056;
+    }
+    nonConformalCyclic_on_nonCouple1
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       43816;
+        matchTolerance  0.0001;
+        neighbourPatch  nonConformalCyclic_on_nonCouple2;
+        transformType   none;
+        originalPatch   nonCouple1;
+    }
+    nonConformalCyclic_on_nonCouple2
+    {
+        type            nonConformalCyclic;
+        inGroups        List<word> 1(nonConformalCyclic);
+        nFaces          0;
+        startFace       43816;
+        matchTolerance  0.0001;
+        neighbourPatch  nonConformalCyclic_on_nonCouple1;
+        transformType   none;
+        originalPatch   nonCouple2;
+    }
+    nonConformalError_on_nonCouple1
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       43816;
+        originalPatch   nonCouple1;
+    }
+    nonConformalError_on_nonCouple2
+    {
+        type            nonConformalError;
+        inGroups        List<word> 1(nonConformalError);
+        nFaces          0;
+        startFace       43816;
+        originalPatch   nonCouple2;
+    }
+)
+
+// ************************************************************************* //
